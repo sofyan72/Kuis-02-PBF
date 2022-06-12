@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { loginUser } from "../../src/actions/auth";
@@ -62,7 +63,7 @@ class Login extends Component {
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in 
+                            Sign in
                         </Typography>
                         <TextField
                             variant="outlined"
@@ -96,18 +97,23 @@ class Login extends Component {
                             className={classes.submit}
                             onClick={this.handleSubmit}
                         >
-                            Sign In
+                           <b>Login</b> 
                         </Button>
-                        <Button
-                            type="button"
-                            fullWidth
-                           
-                            className={classes.submit}
-                            onClick={this.handleSubmit}
-                        >
-                            Register
-                        </Button>
-                    </Paper>
+                    <br/>
+
+                        <Link to="/register">
+                            <Button
+                                type="button"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                            >
+                                <div class="text-center">
+                                <b>Register</b> 
+                                </div> </Button>
+                        </Link>
+                       
+                        </Paper>
                 </Container>
             );
         }

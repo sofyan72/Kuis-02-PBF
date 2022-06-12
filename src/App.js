@@ -5,13 +5,14 @@ import ProtectedRoute from "./components/protectedRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import { register } from "./serviceWorker";
-import { Router } from "react-router-dom";
-import { Link } from "react-router-dom";
+import Create from "./components/Create";
+import Show from "./components/Show";
+import Edit from "./components/Edit";
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
   return (
     <Switch>
+      
       <ProtectedRoute
         exact
         path="/"
@@ -19,9 +20,21 @@ function App(props) {
         isAuthenticated={isAuthenticated}
         isVerifying={isVerifying}
       />
+      <ProtectedRoute
+        exact
+        path="/create"
+        component={Create}
+        isAuthenticated={isAuthenticated}
+        isVerifying={isVerifying}
+      />
+      
       <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <Route path='/show/:id' component={Show} />
+      <Route path='/edit/:id' component={Edit} />
     </Switch>
   );
+  
 }
 function mapStateToProps(state) {
   return {
@@ -29,16 +42,6 @@ function mapStateToProps(state) {
     isVerifying: state.auth.isVerifying
   };
 }
-// return(
-//   <Router>
-//     <div>
-//       <li>
-//         <Link to="/Register">Register</Link>
-//       </li>
-//     </div>
-//   </Router>
-// )
-<Route path="/register" component={register}/>
 export default connect(mapStateToProps)(App);
 
 
